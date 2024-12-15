@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Android OS GUI Simulation</title>
+  <style>
+    body {
+      background-image: url('https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Replace this URL with your desired wallpaper */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      background-position: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .status-bar {
+      background-color: #333;
+      color: white;
+      height: 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      z-index: 2; /* Ensure status bar is above iframe */
+    }
+    .status-bar .time {
+      font-size: 14px;
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      padding: 50px 10px 20px;
+    }
+    .app-icon {
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-icon img {
+      width: 75px; /* Set image size */
+      height: 60px; /* Set image size */
+      border-radius: 20px; /* Curved edges */
+      object-fit: cover; /* Ensure image fills the container */
+      transition: transform 0.3s ease; /* Smooth scaling on hover */
+    }
+    .app-icon img:hover {
+      transform: scale(1.1); /* Slight zoom effect when hovering */
+    }
+    .app-icon p {
+      margin-top: 10px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Unique styles for App 1 */
+    .app1 .app-icon img {
+      border-radius: 20px;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+      width: 70px;
+      height: 60px;
+    }
+    .app1 .app-icon p {
+      color: #FF0000; /* Red color for App 1 text */
+    }
+
+    /* Unique styles for App 2 */
+    .app2 .app-icon img {
+      border-radius: 15px;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+      width: 65px;
+      height: 65px;
+    }
+    .app2 .app-icon p {
+      color: #34A853; /* Green color for App 2 text */
+    }
+
+    .nav-bar {
+      background-color: #333;
+      color: white;
+      height: 60px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 10; /* Make sure navbar stays on top */
+    }
+    .nav-bar button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Iframe style to simulate an app screen */
+    .iframe-container {
+      width: 100%;
+      height: 100%;
+      display: none; /* Initially hidden */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1; /* Iframe sits below the navbar */
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    }
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="time">12:34 PM</div>
+    <div>WiFi: ON</div>
+  </div>
+
+  <!-- App Grid -->
+  <div class="app-grid">
+    <div class="app1" id="app1">
+      <div class="app-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/1024px-YouTube_full-color_icon_%282024%29.svg.png" alt="App 1">
+        <p>App 1</p>
+      </div>
+    </div>
+    <div class="app2" id="app2">
+      <div class="app-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png" alt="App 2">
+        <p>App 2</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <button id="backBtn">Back</button>
+    <button id="homeBtn">Home</button>
+    <button id="recentBtn">Recent</button>
+  </div>
+
+  <!-- Iframe Container for "App 1" -->
+  <div class="iframe-container" id="iframeContainer">
+    <button class="close-btn" id="closeBtn">Close</button>
+    <iframe id="appIframe" src="" title="App 1 Website"></iframe>
+  </div>
+
+  <script>
+    // Show the iframe when App 1 is clicked
+    document.getElementById('app1').addEventListener('click', function() {
+      const iframeContainer = document.getElementById('iframeContainer');
+      const iframe = document.getElementById('appIframe');
+      
+      // Set the source URL of the iframe (the website you want to embed)
+      iframe.src = "./youtube.html"; // Replace with your desired URL
+
+      // Show the iframe container
+      iframeContainer.style.display = 'block';
+    });
+
+    // Show the iframe when App 2 is clicked
+    document.getElementById('app2').addEventListener('click', function() {
+      const iframeContainer = document.getElementById('iframeContainer');
+      const iframe = document.getElementById('appIframe');
+      
+      // Set the source URL of the iframe (the website you want to embed)
+      iframe.src = "./google.html"; // Replace with your desired URL
+
+      // Show the iframe container
+      iframeContainer.style.display = 'block';
+    });
+
+    // Close the iframe container when close button is clicked
+    document.getElementById('closeBtn').addEventListener('click', function() {
+      const iframeContainer = document.getElementById('iframeContainer');
+      const iframe = document.getElementById('appIframe');
+      
+      // Hide the iframe container
+      iframeContainer.style.display = 'none';
+      
+      // Optionally, clear the iframe source to stop the website from running
+      iframe.src = "";
+    });
+
+    // Close the iframe container when the Home button is clicked
+    document.getElementById('homeBtn').addEventListener('click', function() {
+      const iframeContainer = document.getElementById('iframeContainer');
+      const iframe = document.getElementById('appIframe');
+      
+      // Hide the iframe container
+      iframeContainer.style.display = 'none';
+      
+      // Optionally, clear the iframe source to stop the website from running
+      iframe.src = "";
+    });
+  </script>
+
+</body>
+</html>

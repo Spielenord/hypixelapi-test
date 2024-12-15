@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <style>
+        body {
+            background-color: #181818;
+            color: #fff;
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #242424;
+            border-radius: 2px;
+            padding: 5px 10px;
+        }
+
+        .search-bar input {
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        .search-bar button {
+            background-color: #f00;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            margin-right: 20px;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #282828;
+            padding: 10px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <div class="logo">YouTube</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <button>Search</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shorts</a></li>
+                    <li><a href="#">Subscriptions</a></li>
+                    <li><a href="#">You</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Sign in</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a href="#">Gaming</a></li>
+                    <li><a href="#">Sports</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">More from YouTube</a></li>
+                    <li><a href="#">YouTube Premium</a></li>
+                    <li><a href="#">YouTube Music</a></li>
+                    <li><a href="#">YouTube Kids</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="content">
+                <div class="welcome-message">
+                    <h2>Try searching to get started</h2>
+                    <p>Start watching videos to help us build a feed of videos you'll love.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            &copy; 2023 YouTube
+        </footer>
+
+    </div>
+
+</body>
+</html>
